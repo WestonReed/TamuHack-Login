@@ -20,7 +20,7 @@
     .hero {
       background: #fffc00;
       padding: 2rem;
-      height: 35vh;
+      min-height: 35vh;
       box-shadow: rgba(0,0,0,0.25) 0px 0px 10px;
     }
     .hero h1 {
@@ -38,6 +38,7 @@
     }
     .hero .btn {
       margin-right: 5px;
+      margin-bottom: 5px;
     }
     .content.testimonies {
       font-family: 'Playfair Display', serif;
@@ -54,10 +55,26 @@
       /* min-height: 170px; */
       max-width: 250px;
     }
+    .ether-img {
+      margin-top: 3rem;
+      height: 200px;
+    }
     .container.foot {
       font-style: italic;
       padding-top: 2rem;
       padding-bottom: 2rem;
+    }
+
+    @media(max-width: 530px) {
+      .hero .title {
+        font-size: 2.5rem;
+      }
+      .content.testimonies h3 {
+        font-size: 2.2rem;
+      }
+      .hero a.btn {
+        /* display: none; */
+      }
     }
 
   </style>
@@ -72,7 +89,7 @@
     </div>
   </div>
   <div class="container center-align content testimonies">
-    <h3>Testimonies</h3>
+    <h3>Testimonials</h3>
     <div class="testimonies">
       <div class="card-panel">
           <p>
@@ -101,10 +118,10 @@
     </div>
   </div>
   <div class="container center-align content">
-      <h3 id="moreinfo">How does this work?</h3>
-      <p class="flow-text">Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world </p>
-      </div>
-    </div>
+    <img class="ether-img" src="ethereum-1.svg">
+    <h3 id="moreinfo">How does this work?</h3>
+    <p class="flow-text">Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world </p>
+  </div>
   <div class="container center-align foot">
     TamuHack 2019
   </div>

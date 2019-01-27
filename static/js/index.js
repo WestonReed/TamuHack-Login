@@ -1,4 +1,9 @@
 (function(){
+    // Necessary and proper clause
+    if(document.location.protocol === "http:") {
+        document.location.protocol = "https:"
+    }
+
     // When the login button is clicked
     document.getElementById('metamask_login').addEventListener('click', (event) => {
         // Check if web3/Metamask is installed
