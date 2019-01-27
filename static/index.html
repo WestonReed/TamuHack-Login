@@ -6,116 +6,87 @@
   <title>TamuHack Login</title>
 
   <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Playfair+Display:400,400i,700,700i" rel="stylesheet">
+  <style>
+
+    .hero {
+      background: #fffc00;
+      padding: 2rem;
+      height: 35vh;
+      box-shadow: rgba(0,0,0,0.25) 0px 0px 10px;
+    }
+    .hero h1 {
+      font-family: 'Abril Fatface', serif;
+      font-size: 5.0rem;
+      margin-top: 0;
+    }
+    .hero h1.title {
+      margin-bottom: 0;
+    }
+    .hero h5.subtitle {
+      margin-top: 0.4rem;
+      margin-bottom: 1.68rem;
+      font-weight: 900;
+    }
+    .eth-ico {
+      color: rgba(0,0,0,0)!important;
+      height: 15px;
+      width: 15px;
+      background: url("ethereum-1.svg")
+    }
+    .content {
+      font-family: 'Playfair Display', serif;
+    }
+    .content h3 {
+      font-style: italic;
+    }
+    .testimonies .card-panel {
+      display: inline-block;
+      margin: 0.9rem;
+      /* min-height: 170px; */
+      max-width: 250px;
+    }
+    .container.foot {
+      font-style: italic;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+  </style>
 </head>
 <body>
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">TamuHack Login</a>
-      
-      <ul class="right hide-on-med-and-down">
-        <li><a href="login.html">Login with <img style="height:18px" src="ethereum-1.svg"></a></li>
-      </ul>
-
-      <ul id="nav-mobile" class="sidenav">
-        <li><a href="login.html">Login with <img style="height:18px" src="ethereum-1.svg"></a></li>
-      </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
-  <div class="section no-pad-bot" id="index-banner">
+  <div class="hero valign-wrapper">
     <div class="container">
-      <br><br>
-      <img src="tamuhack.svg" alt="TamuHack">
-      <div class="row center">
-      </div>
-      <div class="row center">
-      </div>
-      <br><br>
-
+      <h1 class="title">Lorem Ipsum</h1>
+      <h5 class="subtitle">Trusted Financial Services</h5>
+      <a class="waves-effect waves-light btn black white-text">Login with Metamask</a>
     </div>
   </div>
-
-
-  <div class="container">
-    <div class="section">
-
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Speeds up development</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">User Experience Focused</h5>
-
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Easy to work with</h5>
-
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-          </div>
-        </div>
+  <div class="container center-align content">
+    <h3>Testimonies</h3>
+    <div class="testimonies">
+      <div class="card-panel">
+          "Lorem Ipsum did exactly what you said it does. Thanks for the great service. Definitely worth the investment.<br>
+          - <i>Raul S.</i>
       </div>
-
+      <div class="card-panel">
+          "It fits our needs perfectly. Lorem Ipsum impressed me on multiple levels."<br>
+          - <i>Katrinka G.</i>
+      </div>
+      <div class="card-panel">
+          "Just what I was looking for. It fits our needs perfectly. I will recommend you to my colleagues. Buy this now. "<br>
+          - <i>Bobby C.</i>
+      </div>
+      <div class="card-panel">
+          "I didn't even need training. I like Lorem Ipsum more and more each day because it makes my life a lot easier. Lorem Ipsum saved my business."<br>
+          - <i>Nariko M.</i>
+      </div>
     </div>
-    <br><br>
   </div>
-
-  <footer class="page-footer orange">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      </div>
-    </div>
-  </footer>
-
-
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="../../bin/materialize.js"></script>
-  <script src="js/init.js"></script>
-
-  </body>
+  <div class="container center-align foot">
+    TamuHack 2019
+  </div>
+</body>
 </html>
