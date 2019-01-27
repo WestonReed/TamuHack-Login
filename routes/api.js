@@ -17,6 +17,7 @@ router.get('/', (req, res, next) => {
     res.send(req.session.username === undefined ? "not logged in" : req.session.username)
 })
 
+// Arguments: public_address
 router.post('/nonce', (req, res) => {
     // Query for all users
     knex.select('*').from('users').then(users => {
@@ -64,6 +65,41 @@ router.post('/nonce', (req, res) => {
                     reason: 'POST payload public_address is not a valid Ethereum address'
                 });
             } 
+        }
+    })
+})
+
+// Arguments: public_address,signature
+router.post('/verify', (req, res) => {
+    // Query for all users
+    knex.select('*').from('users').then(users => {
+        let found = false;
+        for(let i = 0; i < users.length; i++) {
+            if(users[i]['pkey'].trim().toLowerCase() === req.body.public_address.trim().toLowerCase()) {
+                found = true;
+                // "estimated" because incorrect verifications just give the wrong address
+                let estimated_address = eth.verify(users[i]['nonce'], req.body.signature)
+                if(req.body.public_address.trim().toLowerCase() === estimated_address.trim().toLocaleLowerCase()) {
+                    req.session.pkey = users[i]['pkey'];
+                    req.session.logged_in = true;
+                    res.json({
+                        status: 'success',
+                        reason: 'signature validated with serverside nonce'
+                    })
+                }
+                else {
+                    res.json({
+                        status: 'failure',
+                        reason: 'signature did not validate with serverside nonce'
+                    })
+                }
+            }
+        }
+        if(!found) {
+            res.status(400).json({
+                status: 'error',
+                reason: 'public_address has no serverside nonce, POST /nonce first'
+            });
         }
     })
 })
