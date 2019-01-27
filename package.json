@@ -19,6 +19,7 @@
   "dependencies": {
     "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
-    "express-session": "^1.15.6"
+    "express-session": "^1.15.6",
+    "mysql": "^2.16.0"
   }
 }
