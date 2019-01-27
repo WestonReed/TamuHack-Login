@@ -79,7 +79,9 @@ router.post('/verify', (req, res) => {
                 found = true;
                 // "estimated" because incorrect verifications just give the wrong address
                 let estimated_address = eth.verify(users[i]['nonce'], req.body.signature)
+                // Compare esimated and provided
                 if(req.body.public_address.trim().toLowerCase() === estimated_address.trim().toLocaleLowerCase()) {
+                    // Signature was valid, mark session as logged_in
                     req.session.pkey = users[i]['pkey'];
                     req.session.logged_in = true;
                     res.json({
@@ -88,6 +90,7 @@ router.post('/verify', (req, res) => {
                     })
                 }
                 else {
+                    // Address mismatch
                     res.json({
                         status: 'failure',
                         reason: 'signature did not validate with serverside nonce'
