@@ -1,10 +1,6 @@
-const otplib = require('otplib')
-
-var express = require('express');
-var router = express.Router();
-var mysql = require('mysql');
-var session = require('express-session');
-const sha256 = require('simple-sha256')
+const express = require('express');
+const router = express.Router();
+const eth = require('../lib/eth')
 require('dotenv').config()
 var knex = require('knex')({
     client: 'mysql',
@@ -21,39 +17,55 @@ router.get('/', (req, res, next) => {
     res.send(req.session.username === undefined ? "not logged in" : req.session.username)
 })
 
-router.get('/echo', (req, res) => {
-    res.json(req.session)
-})
-
-router.post('/login', (req, res) => {
-    console.log(req.body)
-    if(req.body.username && typeof req.body.username === 'string' && req.body.password && typeof req.body.password === 'string') {
-        knex.select('*').from('users').then(users => {
-            for(let i = 0; i < users.length; i++) {
-                if(req.body.username.trim() === users[i]['username'].trim()) {
-                    if(sha256.sync(req.body.password) === users[i]['password']) {
-                        console.log('login good')
-                        req.session.username = users[i]['username']
-                        req.session.logged_in = true
-                        res.json('login good')
-                    }
-                }
+router.post('/nonce', (req, res) => {
+    // Query for all users
+    knex.select('*').from('users').then(users => {
+        let found = false;
+        for(let i = 0; i < users.length; i++) {
+            // If user matches
+            if(users[i]['pkey'].trim().toLowerCase() === req.body.public_address.trim().toLowerCase()) {
+                // Set a flag
+                found = true;
+                // Update the database entry with a fresh nonce
+                let my_nonce = eth.nonce() 
+                knex('users').where('pkey', users[i]['pkey']).update('nonce', my_nonce).then(status => {
+                    // Return the nonce
+                    res.json({
+                        status: 'success',
+                        reason: 'public_key updated with a new nonce',
+                        payload: {
+                            nonce: my_nonce
+                        }
+                    })
+                })
+                break;
             }
-        })
-    }
-    else {
-        res.json("login bad")
-    }
-})
-
-router.get('/register', (req, res) => {
-    req.session.username = req.query.username;
-    res.send('logged in as ' + req.session.username)
-})
-
-router.get('/update', (req, res, next) => {
-    req.session.last_update = String(new Date())
-    res.send("updated")
+        }
+        if(!found) {
+            // No record of public key, just make a new entry with the public key and a new nonce ¯\_(ツ)_/¯
+            if(eth.isAddress(req.body.public_address)) {
+                let my_nonce = eth.nonce()
+                knex('users').insert({
+                    pkey: req.body.public_address.trim(),
+                    nonce: my_nonce
+                }).then(status => {
+                    res.json({
+                        status: 'success',
+                        reason: 'public_key updated with a new nonce',
+                        payload: {
+                            nonce: my_nonce
+                        }
+                    })
+                })
+            }
+            else {
+                res.status(400).json({
+                    status: 'error',
+                    reason: 'POST payload public_address is not a valid Ethereum address'
+                });
+            } 
+        }
+    })
 })
 
 module.exports = router
