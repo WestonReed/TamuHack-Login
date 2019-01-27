@@ -8,8 +8,13 @@
   <!-- CSS  -->
   <link rel="stylesheet" href="css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
   <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Playfair+Display:400,400i,700,700i" rel="stylesheet">
   <style>
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     .hero {
       background: #fffc00;
@@ -30,14 +35,14 @@
       margin-bottom: 1.68rem;
       font-weight: 900;
     }
-    .eth-ico {
-      color: rgba(0,0,0,0)!important;
-      height: 15px;
-      width: 15px;
-      background: url("ethereum-1.svg")
+    .hero .btn {
+      margin-right: 5px;
     }
-    .content {
+    .content.testimonies {
       font-family: 'Playfair Display', serif;
+    }
+    .content.testimonies p {
+      font-size: 1.2rem;
     }
     .content h3 {
       font-style: italic;
@@ -61,32 +66,47 @@
     <div class="container">
       <h1 class="title">Lorem Ipsum</h1>
       <h5 class="subtitle">Trusted Financial Services</h5>
-      <a class="waves-effect waves-light btn black white-text">Login with Metamask</a>
+      <a id="metamask_login" class="waves-effect waves-light btn black white-text">Login with Metamask</a>
+      <a class="waves-effect waves-light btn black white-text" href="#moreinfo">More info</a>
     </div>
   </div>
-  <div class="container center-align content">
+  <div class="container center-align content testimonies">
     <h3>Testimonies</h3>
     <div class="testimonies">
       <div class="card-panel">
-          "Lorem Ipsum did exactly what you said it does. Thanks for the great service. Definitely worth the investment.<br>
-          - <i>Raul S.</i>
+          <p>
+              "Lorem Ipsum did exactly what you said it does. Thanks for the great service. Definitely worth the investment.<br>
+              - <i>Raul S.</i>
+          </p>
       </div>
       <div class="card-panel">
-          "It fits our needs perfectly. Lorem Ipsum impressed me on multiple levels."<br>
-          - <i>Katrinka G.</i>
+          <p>
+              "It fits our needs perfectly. Lorem Ipsum impressed me on multiple levels."<br>
+              - <i>Katrinka G.</i>
+          </p>
       </div>
       <div class="card-panel">
-          "Just what I was looking for. It fits our needs perfectly. I will recommend you to my colleagues. Buy this now. "<br>
-          - <i>Bobby C.</i>
+          <p>
+              "Just what I was looking for. It fits our needs perfectly. I will recommend you to my colleagues. Buy this now. "<br>
+              - <i>Bobby C.</i>
+          </p>
       </div>
       <div class="card-panel">
-          "I didn't even need training. I like Lorem Ipsum more and more each day because it makes my life a lot easier. Lorem Ipsum saved my business."<br>
-          - <i>Nariko M.</i>
+          <p>
+              "I didn't even need training. I like Lorem Ipsum more and more each day because it makes my life a lot easier. Lorem Ipsum saved my business."<br>
+              - <i>Nariko M.</i>
+          </p>
       </div>
     </div>
   </div>
+  <div class="container center-align content">
+      <h3 id="moreinfo">How does this work?</h3>
+      <p class="flow-text">Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world </p>
+      </div>
+    </div>
   <div class="container center-align foot">
     TamuHack 2019
   </div>
+  <script async src="js/index.js"></script>
 </body>
 </html>
