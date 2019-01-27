@@ -17,9 +17,13 @@
   },
   "homepage": "https://github.com/WestonReed/TamuHack-Login#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
-    "mysql": "^2.16.0"
+    "knex": "^0.16.3",
+    "mysql": "^2.16.0",
+    "simple-sha256": "^1.0.0"
   }
 }
