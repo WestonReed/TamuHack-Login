@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
         res.redirect('/')
     }
     else {
-        res.send('<h1>youre logged in! your on-file eth address identity is: '+req.session.pkey+'</h1>')
+        res.send('<h1>youre logged in! this page is dynamically generated to provide you with personalized information only to you, like your on-file Ethereum identity: '+req.session.pkey+'</h1>')
     }
 })
 
