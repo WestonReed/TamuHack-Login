@@ -48,7 +48,7 @@
                                     // If the server confirms our identity (and assigns us a session cookie)
                                     if(data.status === 'success') {
                                         // Redirect to go look at the super duper sensitive information
-                                        document.location.href = '/private'
+                                        document.location.href = '/settings.html'
                                     }
                                     else {
                                         // For one reason or another, something went wrong: just display the JSON response
