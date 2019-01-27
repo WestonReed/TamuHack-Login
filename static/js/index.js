@@ -14,48 +14,53 @@
                 showCancelButton: true,
                 confirmButtonText: 'Open Metamask'
             }).then((result) => {
-                // Retrieve the nonce
-                fetch('/api/nonce', {
-                    method: 'POST',
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        public_address: web3.eth.coinbase
+                if(result.dismiss !== 'cancel') {
+                    // Retrieve the nonce
+                    fetch('/api/nonce', {
+                        method: 'POST',
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            public_address: web3.eth.coinbase
+                        })
                     })
-                })
-                .then(res => res.json())
-                .then(data => {
-                    // If the nonce was provided
-                    if(data.status === 'success') {
-                        // Prompt Metamask to sign the nonce
-                        web3.personal.sign(data.payload.nonce, web3.eth.coinbase,(err, signature) => {
-                            // Send the signature (+ethereum address) back for verification
-                            fetch('/api/verify', {
-                                method: 'POST',
-                                headers: { "Content-Type": "application/json" },
-                                body: JSON.stringify({
-                                    public_address: web3.eth.coinbase,
-                                    signature: signature
+                    .then(res => res.json())
+                    .then(data => {
+                        // If the nonce was provided
+                        if(data.status === 'success') {
+                            // Prompt Metamask to sign the nonce
+                            web3.personal.sign(data.payload.nonce, web3.eth.coinbase,(err, signature) => {
+                                // Send the signature (+ethereum address) back for verification
+                                fetch('/api/verify', {
+                                    method: 'POST',
+                                    headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify({
+                                        public_address: web3.eth.coinbase,
+                                        signature: signature
+                                    })
                                 })
-                            })
-                            .then(res => res.json())
-                            .then(data => {
-                                // If the server confirms our identity (and assigns us a session cookie)
-                                if(data.status === 'success') {
-                                    // Redirect to go look at the super duper sensitive information
-                                    document.location.href = '/private'
-                                }
-                                else {
-                                    // For one reason or another, something went wrong: just display the JSON response
-                                    Swal.fire('Something went wrong.', JSON.stringify(data), 'error')
-                                }
-                            })
-                        });
-                    }
-                    else {
-                        // For one reason or another, something went wrong: just display the JSON response
-                        Swal.fire('Something went wrong.', JSON.stringify(data), 'error')
-                    }
-                })
+                                .then(res => res.json())
+                                .then(data => {
+                                    // If the server confirms our identity (and assigns us a session cookie)
+                                    if(data.status === 'success') {
+                                        // Redirect to go look at the super duper sensitive information
+                                        document.location.href = '/private'
+                                    }
+                                    else {
+                                        // For one reason or another, something went wrong: just display the JSON response
+                                        Swal.fire('Something went wrong.', JSON.stringify(data), 'error')
+                                    }
+                                })
+                            });
+                        }
+                        else {
+                            // For one reason or another, something went wrong: just display the JSON response
+                            Swal.fire('Something went wrong.', JSON.stringify(data), 'error')
+                        }
+                    })
+                }
+                else {
+                    // do nothing
+                }
             })
         }
     })
