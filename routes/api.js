@@ -81,12 +81,15 @@ router.post('/verify', (req, res) => {
                 let estimated_address = eth.verify(users[i]['nonce'], req.body.signature)
                 // Compare esimated and provided
                 if(req.body.public_address.trim().toLowerCase() === estimated_address.trim().toLocaleLowerCase()) {
-                    // Signature was valid, mark session as logged_in
-                    req.session.pkey = users[i]['pkey'];
-                    req.session.logged_in = true;
-                    res.json({
-                        status: 'success',
-                        reason: 'signature validated with serverside nonce'
+                    // Generate new nonce in database to prevent replay attacks
+                    knex('users').where('pkey', users[i]['pkey']).update('nonce', eth.nonce()).then(status => {
+                        // Signature was valid, mark session as logged_in
+                        req.session.pkey = users[i]['pkey'];
+                        req.session.logged_in = true;
+                        res.json({
+                            status: 'success',
+                            reason: 'signature validated with serverside nonce'
+                        })
                     })
                 }
                 else {
