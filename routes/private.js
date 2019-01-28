@@ -17,7 +17,6 @@ router.get('/', (req, res, next) => {
         res.redirect('/')
     }
     else {
-        console.log(req.session)
         knex.select('*').from('users').then(users => {
             for(let i = 0; i < users.length; i++) {
                 if(users[i]['pkey'].trim().toLowerCase() === req.session.pkey.trim().toLowerCase()) {
@@ -29,7 +28,6 @@ router.get('/', (req, res, next) => {
                 }
             }
         })
-        //res.send('<h1>youre logged in! this page is dynamically generated to provide you with personalized information only to you, like your on-file Ethereum identity: '+req.session.pkey+'</h1>')
     }
 })
 
