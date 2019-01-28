@@ -27,7 +27,8 @@ CREATE TABLE `users` (
   `username` text NOT NULL,
   `pkey` text NOT NULL,
   `nonce` text,
+  `balance` decimal(11,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;

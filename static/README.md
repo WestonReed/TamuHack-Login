@@ -1,8 +1,8 @@
 static
 ======
 
-Contents of this folder are symlinked:
+This folder is symlinked:
 
 `/opt/TamuHack-Login/static => /var/www/html`
 
-This is intended for nginx.
+This is intended for nginx. Renaming the existing `html` folder to something else is necessary.
