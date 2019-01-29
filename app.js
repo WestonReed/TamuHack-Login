@@ -5,7 +5,7 @@ var bodyParser = require('body-parser')
 var api = require('./routes/api');
 var private = require('./routes/private')
 
-const port = 3000
+const port = process.env.NODE_PORT || 3000
 
 var app = express()
 
