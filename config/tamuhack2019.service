@@ -1,0 +1,14 @@
+[Unit]
+Description=LipsumLogin (tamuhack2019 project)
+Documentation=https://github.com/WestonReed/TamuHack-Login
+After=network.target
+
+[Service]
+Environment=NODE_PORT=3001
+Type=simple
+User=austin
+ExecStart=/home/austin/.nvm/versions/node/v11.8.0/bin/node /opt/tamuhack2019/TamuHack-Login/app.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
